@@ -17,7 +17,7 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#include "tinygettext/unix_file_system.hpp"
+#include "unix_file_system.hpp"
 
 #include <sys/types.h>
 #include <fstream>

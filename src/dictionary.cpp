@@ -19,8 +19,8 @@
 
 #include <assert.h>
 
-//~ #include "tinygettext/log_stream.hpp"
-#include "tinygettext/dictionary.hpp"
+//~ #include "log_stream.hpp"
+#include "dictionary.hpp"
 
 namespace tinygettext {
 

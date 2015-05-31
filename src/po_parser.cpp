@@ -17,7 +17,7 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#include "tinygettext/po_parser.hpp"
+#include "po_parser.hpp"
 
 #include <iostream>
 #include <ctype.h>
@@ -28,11 +28,11 @@
 #include <unordered_map>
 #include <stdlib.h>
 
-#include "tinygettext/language.hpp"
-//~ #include "tinygettext/log_stream.hpp"
-//~ #include "tinygettext/iconv.hpp"
-#include "tinygettext/dictionary.hpp"
-#include "tinygettext/plural_forms.hpp"
+#include "language.hpp"
+//~ #include "log_stream.hpp"
+//~ #include "iconv.hpp"
+#include "dictionary.hpp"
+#include "plural_forms.hpp"
 
 namespace tinygettext {
 

@@ -17,7 +17,7 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#include "tinygettext/dictionary_manager.hpp"
+#include "dictionary_manager.hpp"
 
 #include <memory>
 #include <assert.h>
@@ -26,9 +26,9 @@
 #include <fstream>
 #include <algorithm>
 
-//~ #include "tinygettext/log_stream.hpp"
-#include "tinygettext/po_parser.hpp"
-#include "tinygettext/unix_file_system.hpp"
+//~ #include "log_stream.hpp"
+#include "po_parser.hpp"
+#include "unix_file_system.hpp"
 
 namespace tinygettext {
 

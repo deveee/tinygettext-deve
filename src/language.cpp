@@ -17,7 +17,7 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#include "tinygettext/language.hpp"
+#include "language.hpp"
 
 #include <assert.h>
 #include <unordered_map>
