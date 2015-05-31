@@ -144,19 +144,6 @@ endif(CMAKE_COMPILER_IS_GNUCC)
 
 add_definitions(-DVERSION=${VERSION})
 
-## Generate test executables in the right place
-
-set(EXECUTABLE_OUTPUT_PATH ${tinygettext_BINARY_DIR}/test)
-
-## Build tinygettext tests
-
-foreach(TEST tinygettext_test po_parser_test)
-  ## Add target for tinygettext test
-  add_executable(${TEST} test/${TEST}.cpp)
-  ## Link with tinygettext library
-  target_link_libraries(${TEST} tinygettext)
-  TARGET_LINK_LIBRARIES(${TEST} ${ICONV_LIBRARY})
-endforeach(TEST)
 
 ## Install tinygettext
 
@@ -164,8 +151,6 @@ endforeach(TEST)
 set(LIB_SUBDIR "lib${LIB_SUFFIX}"
 	CACHE STRING "Subdirectory of prefix into which libraries are installed (e.g., lib32, lib64)")
 
-## prepare tinygettext.pc
-configure_file(tinygettext.pc.in tinygettext.pc @ONLY)
 
 install(TARGETS tinygettext
 	ARCHIVE DESTINATION ${LIB_SUBDIR}
