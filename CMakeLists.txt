@@ -3,7 +3,7 @@ set(VERSION "0.1")
 
 cmake_minimum_required(VERSION 2.4)
 
-add_definitions(-std=c++0x -O3)
+add_definitions(-O3)
 
 file(GLOB TINYGETTEXT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} src/*.cpp)
 

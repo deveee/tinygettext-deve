@@ -19,7 +19,8 @@
 
 #include "plural_forms.hpp"
 
-#include <unordered_map>
+//~ #include <unordered_map>
+#include <map>
 
 namespace tinygettext {
 
@@ -49,7 +50,8 @@ unsigned int plural4_gd(int n) { return static_cast<unsigned int>( n==1 || n==11
 PluralForms
 PluralForms::from_string(const std::string& str)
 {
-  typedef std::unordered_map<std::string, PluralForms> PluralFormsMap;
+  //~ typedef std::unordered_map<std::string, PluralForms> PluralFormsMap;
+  typedef std::map<std::string, PluralForms> PluralFormsMap;
   static PluralFormsMap plural_forms;
 
   if (plural_forms.empty())

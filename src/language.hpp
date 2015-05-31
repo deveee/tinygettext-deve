@@ -21,7 +21,8 @@
 #define HEADER_TINYGETTEXT_LANGUAGE_HPP
 
 #include <string>
-#include <unordered_map>
+//~ #include <unordered_map>
+#include <map>
 
 namespace tinygettext {
 
@@ -58,7 +59,8 @@ public:
   /** Create an undefined Language object */
   Language();
 
-  explicit operator bool() const { return language_spec != NULL; }
+  //~ explicit operator bool() const { return language_spec != NULL; }
+  operator bool() const { return language_spec != NULL; }
 
   /** Returns the language code (i.e. de, en, fr) */
   std::string get_language() const;
