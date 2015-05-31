@@ -21,8 +21,9 @@
 #define HEADER_TINYGETTEXT_PO_PARSER_HPP
 
 #include <iosfwd>
+#include <string>
 
-#include "iconv.hpp"
+//~ #include "iconv.hpp"
 
 namespace tinygettext {
 
@@ -43,7 +44,7 @@ private:
   int line_number;
   std::string current_line;
 
-  IConv conv;
+  //~ IConv conv;
 
   POParser(const std::string& filename, std::istream& in_, Dictionary& dict_, bool use_fuzzy = true);
   ~POParser();

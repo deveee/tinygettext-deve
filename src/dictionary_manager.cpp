@@ -26,7 +26,7 @@
 #include <fstream>
 #include <algorithm>
 
-#include "tinygettext/log_stream.hpp"
+//~ #include "tinygettext/log_stream.hpp"
 #include "tinygettext/po_parser.hpp"
 #include "tinygettext/unix_file_system.hpp"
 
@@ -129,7 +129,7 @@ DictionaryManager::get_dictionary(const Language& language)
 
           if (!po_language)
           {
-            log_warning << *filename << ": warning: ignoring, unknown language" << std::endl;
+            //~ log_warning << *filename << ": warning: ignoring, unknown language" << std::endl;
           }
           else
           {
@@ -152,7 +152,7 @@ DictionaryManager::get_dictionary(const Language& language)
           std::unique_ptr<std::istream> in = filesystem->open_file(pofile);
           if (!in.get())
           {
-            log_error << "error: failure opening: " << pofile << std::endl;
+            //~ log_error << "error: failure opening: " << pofile << std::endl;
           }
           else
           {
@@ -161,8 +161,8 @@ DictionaryManager::get_dictionary(const Language& language)
         }
         catch(std::exception& e)
         {
-          log_error << "error: failure parsing: " << pofile << std::endl;
-          log_error << e.what() << "" << std::endl;
+          //~ log_error << "error: failure parsing: " << pofile << std::endl;
+          //~ log_error << e.what() << "" << std::endl;
         }
       }
     }

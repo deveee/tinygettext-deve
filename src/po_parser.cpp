@@ -23,13 +23,14 @@
 #include <ctype.h>
 #include <string>
 #include <istream>
+#include <sstream>
 #include <string.h>
 #include <unordered_map>
 #include <stdlib.h>
 
 #include "tinygettext/language.hpp"
-#include "tinygettext/log_stream.hpp"
-#include "tinygettext/iconv.hpp"
+//~ #include "tinygettext/log_stream.hpp"
+//~ #include "tinygettext/iconv.hpp"
 #include "tinygettext/dictionary.hpp"
 #include "tinygettext/plural_forms.hpp"
 
@@ -55,8 +56,8 @@ POParser::POParser(const std::string& filename_, std::istream& in_, Dictionary& 
   eof(false),
   big5(false),
   line_number(0),
-  current_line(),
-  conv()
+  current_line()
+  //~ conv()
 {
 }
 
@@ -67,14 +68,14 @@ POParser::~POParser()
 void
 POParser::warning(const std::string& msg)
 {
-  log_warning << filename << ":" << line_number << ": warning: " << msg << ": " << current_line << std::endl;
+  //~ log_warning << filename << ":" << line_number << ": warning: " << msg << ": " << current_line << std::endl;
   //log_warning << "Line: " << current_line << std::endl;
 }
 
 void
 POParser::error(const std::string& msg)
 {
-  log_error << filename << ":" << line_number << ": error: " << msg  << ": " << current_line << std::endl;
+  //~ log_error << filename << ":" << line_number << ": error: " << msg  << ": " << current_line << std::endl;
 
   // Try to recover from an error by searching for start of another entry
   do
@@ -296,7 +297,7 @@ POParser::parse_header(const std::string& header)
     big5 = true;
   }
 
-  conv.set_charsets(from_charset, dict.get_charset());
+  //~ conv.set_charsets(from_charset, dict.get_charset());
 }
 
 bool
@@ -405,7 +406,8 @@ POParser::parse()
             if (number >= msgstr_num.size())
               msgstr_num.resize(number+1);
 
-            msgstr_num[number] = conv.convert(msgstr);
+            //~ msgstr_num[number] = conv.convert(msgstr);
+            msgstr_num[number] = msgstr;
             goto next;
           }
           else
@@ -444,7 +446,8 @@ POParser::parse()
 	      std::cout << "msgid \"" << msgid << "\"" << std::endl;
 	      std::cout << "msgid_plural \"" << msgid_plural << "\"" << std::endl;
 	      for(std::vector<std::string>::size_type i = 0; i < msgstr_num.size(); ++i)
-		std::cout << "msgstr[" << i << "] \"" << conv.convert(msgstr_num[i]) << "\"" << std::endl;
+		//~ std::cout << "msgstr[" << i << "] \"" << conv.convert(msgstr_num[i]) << "\"" << std::endl;
+		std::cout << "msgstr[" << i << "] \"" << msgstr_num[i] << "\"" << std::endl;
 	      std::cout << std::endl;
 	    }
 	  }
@@ -462,16 +465,19 @@ POParser::parse()
             if (use_fuzzy || !fuzzy)
             {
               if (has_msgctxt)
-                dict.add_translation(msgctxt, msgid, conv.convert(msgstr));
+                //~ dict.add_translation(msgctxt, msgid, conv.convert(msgstr));
+                dict.add_translation(msgctxt, msgid, msgstr);
               else
-                dict.add_translation(msgid, conv.convert(msgstr));
+                //~ dict.add_translation(msgid, conv.convert(msgstr));
+                dict.add_translation(msgid, msgstr);
             }
 
             if (0)
             {
               std::cout << (fuzzy?"fuzzy":"not-fuzzy") << std::endl;
               std::cout << "msgid \"" << msgid << "\"" << std::endl;
-              std::cout << "msgstr \"" << conv.convert(msgstr) << "\"" << std::endl;
+              //~ std::cout << "msgstr \"" << conv.convert(msgstr) << "\"" << std::endl;
+              std::cout << "msgstr \"" << msgstr << "\"" << std::endl;
               std::cout << std::endl;
             }
           }

@@ -59,34 +59,6 @@ mark_as_advanced(
 ## Reveal library type choice to users
 option(BUILD_SHARED_LIBS "Produce dynamic library instead of static archive" ON)
 
-## Add iconv to include directories
-
-find_package(ICONV REQUIRED)
-include_directories(${ICONV_INCLUDE_DIR})
-
-## Check iconv_const
-
-include(CheckCXXSourceCompiles)
-
-set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${ICONV_INCLUDE_DIR})
-check_cxx_source_compiles(
-	"
-	#include <iconv.h>
-	// this declaration will fail when there already exists a non const char** version which returns size_t
-	double iconv(iconv_t cd,  char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft);
-	int main() { return 0; }
-	"
-	HAVE_ICONV_CONST
-)
-
-# TODO: better way of config
-
-if(HAVE_ICONV_CONST)
-  add_definitions(-DHAVE_ICONV_CONST)
-else(HAVE_ICONV_CONST)
-  remove_definitions(-DHAVE_ICONV_CONST)
-endif(HAVE_ICONV_CONST)
-
 ## TinyGetText library compilation
 
 ## build list of source files
