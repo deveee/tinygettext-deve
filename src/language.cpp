@@ -20,6 +20,7 @@
 #include "language.hpp"
 
 #include <assert.h>
+#include <cctype>
 //~ #include <unordered_map>
 #include <map>
 #include <vector>

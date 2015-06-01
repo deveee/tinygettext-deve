@@ -21,6 +21,7 @@
 
 //~ #include <unordered_map>
 #include <map>
+#include <cctype>
 
 namespace tinygettext {
 

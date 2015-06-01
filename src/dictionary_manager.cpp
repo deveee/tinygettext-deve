@@ -19,6 +19,7 @@
 
 #include "dictionary_manager.hpp"
 
+#include <cctype>
 #include <memory>
 #include <assert.h>
 #include <stdlib.h>
