@@ -29,6 +29,7 @@
 
 //~ #include "log_stream.hpp"
 #include "po_parser.hpp"
+#include "android_file_system.hpp"
 #include "unix_file_system.hpp"
 
 namespace tinygettext {
@@ -49,7 +50,11 @@ DictionaryManager::DictionaryManager(const std::string& charset_) :
   current_language(),
   current_dict(0),
   empty_dict(),
+#ifdef ANDROID
+  filesystem(new AndroidFileSystem)
+#else
   filesystem(new UnixFileSystem)
+#endif
 {
 }
 
