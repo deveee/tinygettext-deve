@@ -171,6 +171,7 @@ DictionaryManager::get_dictionary(const Language& language)
         }
         catch(std::exception& e)
         {
+          (void)e;
           //~ log_error << "error: failure parsing: " << pofile << std::endl;
           //~ log_error << e.what() << "" << std::endl;
         }
