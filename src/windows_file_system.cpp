@@ -17,49 +17,49 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#if !defined(_MSC_VER) && !defined(ANDROID)
+#ifdef _MSC_VER
 
-#include "unix_file_system.hpp"
+#include "windows_file_system.hpp"
 
 #include <sys/types.h>
 #include <fstream>
-#include <dirent.h>
+
+#include <windows.h>
+
 #include <stdlib.h>
 #include <string.h>
 
 namespace tinygettext {
 
-UnixFileSystem::UnixFileSystem()
+WindowsFileSystem::WindowsFileSystem()
 {
 }
 
 std::vector<std::string>
-UnixFileSystem::open_directory(const std::string& pathname)
+WindowsFileSystem::open_directory(const std::string& pathname)
 {
-  DIR* dir = opendir(pathname.c_str());
-  if (!dir)
-  {
-    // FIXME: error handling
-    return std::vector<std::string>();
-  }
-  else
-  {
-    std::vector<std::string> files;
+  WIN32_FIND_DATA search_data;
+  memset(&search_data, 0, sizeof(WIN32_FIND_DATA));
 
-    struct dirent* dp;
-    while((dp = readdir(dir)) != 0)
+  std::vector<std::string> files;
+
+  HANDLE handle = FindFirstFile((pathname + "/*").c_str(), &search_data);
+
+  if (handle != INVALID_HANDLE_VALUE)
+  {
+    while (FindNextFile(handle, &search_data) != FALSE)
     {
-      files.push_back(dp->d_name);
+      files.push_back(search_data.cFileName);
     }
-    closedir(dir);
-
-    return files;
   }
+
+   FindClose(handle);
+   return files;
 }
 
 //~ std::unique_ptr<std::istream>
 std::auto_ptr<std::istream>
-UnixFileSystem::open_file(const std::string& filename)
+WindowsFileSystem::open_file(const std::string& filename)
 {
   //~ return std::unique_ptr<std::istream>(new std::ifstream(filename.c_str()));
   return std::auto_ptr<std::istream>(new std::ifstream(filename.c_str()));

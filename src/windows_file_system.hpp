@@ -17,55 +17,28 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#if !defined(_MSC_VER) && !defined(ANDROID)
+#ifndef HEADER_TINYGETTEXT_WINDOWS_FILE_SYSTEM_HPP
+#define HEADER_TINYGETTEXT_WINDOWS_FILE_SYSTEM_HPP
 
-#include "unix_file_system.hpp"
+#ifdef _MSC_VER
 
-#include <sys/types.h>
-#include <fstream>
-#include <dirent.h>
-#include <stdlib.h>
-#include <string.h>
+#include "file_system.hpp"
 
 namespace tinygettext {
 
-UnixFileSystem::UnixFileSystem()
+class WindowsFileSystem : public FileSystem
 {
-}
+public:
+  WindowsFileSystem();
 
-std::vector<std::string>
-UnixFileSystem::open_directory(const std::string& pathname)
-{
-  DIR* dir = opendir(pathname.c_str());
-  if (!dir)
-  {
-    // FIXME: error handling
-    return std::vector<std::string>();
-  }
-  else
-  {
-    std::vector<std::string> files;
-
-    struct dirent* dp;
-    while((dp = readdir(dir)) != 0)
-    {
-      files.push_back(dp->d_name);
-    }
-    closedir(dir);
-
-    return files;
-  }
-}
-
-//~ std::unique_ptr<std::istream>
-std::auto_ptr<std::istream>
-UnixFileSystem::open_file(const std::string& filename)
-{
-  //~ return std::unique_ptr<std::istream>(new std::ifstream(filename.c_str()));
-  return std::auto_ptr<std::istream>(new std::ifstream(filename.c_str()));
-}
+  std::vector<std::string>    open_directory(const std::string& pathname);
+  //~ std::unique_ptr<std::istream> open_file(const std::string& filename);
+  std::auto_ptr<std::istream> open_file(const std::string& filename);
+};
 
 } // namespace tinygettext
+
+#endif
 
 #endif
 

@@ -20,6 +20,8 @@
 #ifndef HEADER_TINYGETTEXT_UNIX_FILE_SYSTEM_HPP
 #define HEADER_TINYGETTEXT_UNIX_FILE_SYSTEM_HPP
 
+#if !defined(_MSC_VER) && !defined(ANDROID)
+
 #include "file_system.hpp"
 
 namespace tinygettext {
@@ -35,6 +37,8 @@ public:
 };
 
 } // namespace tinygettext
+
+#endif
 
 #endif
 
